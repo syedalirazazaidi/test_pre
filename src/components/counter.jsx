@@ -2,19 +2,28 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-
     tags: [],
   };
-  rendertage() {
-    if (this.state.tags.length === 0) return <div>ther are no tags</div>;
-    return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
-  }
+  //   rendertage() {
+  //     if (this.state.tags.length === 0) return <div>ther are no tags</div>;
+  //     return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
+  //   }
+  addevent = () => {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  };
 
   render() {
     return (
       <div>
-        {this.state.tags.length === 0 && <div>there are no tags</div>}
-        <ul>{this.rendertage()}</ul>
+        {/* {this.state.tags.length === 0 && <div>there are no tags</div>} */}
+        <p>{this.state.count}</p>
+        <button className="btn btn-primary" onClick={this.addevent}>
+          addevent
+        </button>
+
+        {/* <ul>{this.rendertage()}</ul> */}
       </div>
     );
   }
