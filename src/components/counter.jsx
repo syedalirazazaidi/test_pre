@@ -3,29 +3,18 @@ class Counter extends Component {
   state = {
     count: 0,
 
-    tags: ["tags1", "tag2", "tag3"],
+    tags: [],
   };
-  format() {
-    const { count } = this.state;
-    return count === 1 ? "zero" : count;
+  rendertage() {
+    if (this.state.tags.length === 0) return <div>ther are no tags</div>;
+    return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
   }
-  getBadgeClasses() {
-    let classes = "badge m-2 p-2 bg-";
-    classes += this.state.count === 0 ? "warning" : "primary";
-    return classes;
-  }
+
   render() {
     return (
       <div>
-        <span className={this.getBadgeClasses()}> {this.format()}</span>
-        <button type="button" className="btn btn-primary">
-          Increment
-        </button>
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
+        {this.state.tags.length === 0 && <div>there are no tags</div>}
+        <ul>{this.rendertage()}</ul>
       </div>
     );
   }
