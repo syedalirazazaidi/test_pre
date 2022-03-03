@@ -8,18 +8,26 @@ class Counter extends Component {
   //     if (this.state.tags.length === 0) return <div>ther are no tags</div>;
   //     return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
   //   }
-  addevent = () => {
+  addevent = (id) => {
     this.setState({
       count: this.state.count + 1,
+      id,
     });
   };
+  //   function customFunc() {
+  //     return this.state.count === 0 ? "Zero" : this.state.count;
+  //   }
 
   render() {
+    const { count } = this.state;
     return (
       <div>
         {/* {this.state.tags.length === 0 && <div>there are no tags</div>} */}
-        <p>{this.state.count}</p>
-        <button className="btn btn-primary" onClick={this.addevent}>
+        <p className="btn btn-secondary m-3">{count === 0 ? "Zero" : count}</p>
+        <button
+          className="btn btn-primary"
+          onClick={() => this.addevent({ id: 1 })}
+        >
           addevent
         </button>
 
