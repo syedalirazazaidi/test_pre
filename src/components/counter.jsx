@@ -8,10 +8,9 @@ class Counter extends Component {
   //     if (this.state.tags.length === 0) return <div>ther are no tags</div>;
   //     return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
   //   }
-  addevent = (id) => {
+  addevent = () => {
     this.setState({
       count: this.state.count + 1,
-      id,
     });
   };
   //   function customFunc() {
@@ -24,10 +23,7 @@ class Counter extends Component {
       <div>
         {/* {this.state.tags.length === 0 && <div>there are no tags</div>} */}
         <p className="btn btn-secondary m-3">{count === 0 ? "Zero" : count}</p>
-        <button
-          className="btn btn-primary"
-          onClick={() => this.addevent({ id: 1 })}
-        >
+        <button className="btn btn-primary" onClick={() => this.addevent()}>
           addevent
         </button>
 
