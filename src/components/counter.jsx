@@ -2,30 +2,32 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-    // imageUrl:'https://picsum.photos/200'
+
+    tags: ["tags1", "tag2", "tag3"],
   };
   format() {
     const { count } = this.state;
     return count === 1 ? "zero" : count;
   }
-   getBadgeClasses() {
+  getBadgeClasses() {
     let classes = "badge m-2 p-2 bg-";
     classes += this.state.count === 0 ? "warning" : "primary";
     return classes;
-}
+  }
   render() {
-    
-     
     return (
       <div>
-       <span className={this.getBadgeClasses}> {this.format()}</span>
-        <button type="button" class="btn btn-primary">
+        <span className={this.getBadgeClasses()}> {this.format()}</span>
+        <button type="button" className="btn btn-primary">
           Increment
         </button>
+        <ul>
+          {this.state.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
       </div>
     );
-
-     
   }
 }
 
