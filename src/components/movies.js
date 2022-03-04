@@ -9,7 +9,17 @@ function Movie() {
     setMovie(movie.filter((del) => del._id !== id));
   };
   // should work
-  // const handleLike = (movi) => {};
+  const handleLike = (movies) => {
+    console.log(movies, "S");
+    // setMovie(
+    //   movie.map((item) => {
+    //     if (movies._id === item._id) {
+    //       console.log(";;;");
+    //     }
+    //   })
+    // );
+  };
+
   if (movie.length === 0) return <p>no movie in the database</p>;
   return (
     <>
@@ -35,7 +45,7 @@ function Movie() {
                 <td>
                   <Like
                     liked={movie.liked}
-                    likeed={handleLike(movie)}
+                    likeed={handleLike}
                     id={movie._id}
                   />
                 </td>
