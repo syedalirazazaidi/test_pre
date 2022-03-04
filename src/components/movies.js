@@ -4,20 +4,28 @@ import { getMovies } from "./services/fakeMovieService";
 
 function Movie() {
   const [movie, setMovie] = React.useState(getMovies());
-  const [like, setSetLiked] = React.useState(true);
+
   const deleteButton = (id) => {
     setMovie(movie.filter((del) => del._id !== id));
   };
-  // should work
-  const handleLike = (movies) => {
-    console.log(movies, "S");
-    // setMovie(
-    //   movie.map((item) => {
-    //     if (movies._id === item._id) {
-    //       console.log(";;;");
-    //     }
-    //   })
-    // );
+  // should work single source of truth
+  const toggleLike = (id) => {
+    setMovie((pre) => {
+      const newMovie = [];
+      for (let i = 0; i < pre.length; i++) {
+        const currentMovie = pre[i];
+        if (currentMovie._id === id) {
+          const updated = {
+            ...currentMovie,
+            liked: !currentMovie.liked,
+          };
+          newMovie.push(updated);
+        } else {
+          newMovie.push(currentMovie);
+        }
+      }
+      return newMovie;
+    });
   };
 
   if (movie.length === 0) return <p>no movie in the database</p>;
@@ -45,7 +53,7 @@ function Movie() {
                 <td>
                   <Like
                     liked={movie.liked}
-                    likeed={handleLike}
+                    handleClick={toggleLike}
                     id={movie._id}
                   />
                 </td>
