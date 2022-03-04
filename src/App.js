@@ -1,14 +1,16 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Main from "./main";
-import Counter from "./components/counter";
-
-function App() {
-  return (
-    <div className="App">
-      <Counter />
-    </div>
-  );
+import React, { Component } from "react";
+import Movie from "./components/movies";
+class App extends Component {
+  state = {};
+  render() {
+    return (
+      <main>
+        <div className="container">
+          <Movie />
+        </div>
+      </main>
+    );
+  }
 }
 
 export default App;
