@@ -8,23 +8,33 @@ function Movie() {
   const deleteButton = (id) => {
     setMovie(movie.filter((del) => del._id !== id));
   };
-  // should work single source of truth
+  // should work single source of truth-----
+  // IMPERATIVE CODE------
+  // const toggleLike = (id) => {
+  //   setMovie((pre) => {
+  //     const newMovie = [];
+  //     for (let i = 0; i < pre.length; i++) {
+  //       const currentMovie = pre[i];
+  //       if (currentMovie._id === id) {
+  //         const updated = {
+  //           ...currentMovie,
+  //           liked: !currentMovie.liked,
+  //         };
+  //         newMovie.push(updated);
+  //       } else {
+  //         newMovie.push(currentMovie);
+  //       }
+  //     }
+  //     return newMovie;
+  //   });
+  // };
+
+  // ---------------------DECLAIRATIVE CODE------------
   const toggleLike = (id) => {
     setMovie((pre) => {
-      const newMovie = [];
-      for (let i = 0; i < pre.length; i++) {
-        const currentMovie = pre[i];
-        if (currentMovie._id === id) {
-          const updated = {
-            ...currentMovie,
-            liked: !currentMovie.liked,
-          };
-          newMovie.push(updated);
-        } else {
-          newMovie.push(currentMovie);
-        }
-      }
-      return newMovie;
+      return pre.map((move) =>
+        move._id === id ? { ...move, liked: !move.liked } : move
+      );
     });
   };
 

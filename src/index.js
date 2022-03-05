@@ -58,3 +58,24 @@ ReactDOM.render(
 // };
 // const newObj = { ...obj1, ...obj2, location: "australi" };
 // console.log(newObj);
+
+// --------------IMPERATIVE CODE----------------------
+
+// const toggleLike = (id) => {
+//   setMovie((pre) => {
+//     const newMovie = [];
+//     for (let i = 0; i < pre.length; i++) {
+//       const currentMovie = pre[i];
+//       if (currentMovie._id === id) {
+//         const updated = {
+//           ...currentMovie,
+//           liked: !currentMovie.liked,
+//         };
+//         newMovie.push(updated);
+//       } else {
+//         newMovie.push(currentMovie);
+//       }
+//     }
+//     return newMovie;
+//   });
+// };
