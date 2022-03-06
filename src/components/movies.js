@@ -1,15 +1,20 @@
 import React from "react";
 import Like from "./common/like";
+import Listinggroup from "./common/listinggroup";
 import Pagination from "./common/pagination";
+import { getGenres } from "./services/fakeGenreService";
 import { getMovies } from "./services/fakeMovieService";
 
 function Movie() {
   const [movie, setMovie] = React.useState(getMovies());
-  // const [pages] = useState(Math.round(data.length / dataLimit));
-  // const [currentPage, setCurrentPage] = useState(1);
+  const [genric, setGenric] = React.useState(getGenres());
 
   const deleteButton = (id) => {
     setMovie(movie.filter((del) => del._id !== id));
+  };
+  const handleGenric = (value) => {
+    setGenric(value);
+    // setGenric(value);
   };
   // should work single source of truth-----
   // IMPERATIVE CODE------
@@ -41,37 +46,35 @@ function Movie() {
       );
     });
   };
-  function Post(props) {
-    console.log(props, "l==llllllll");
-    const { genre, title, numberInStock, dailyRentalRate } = props.data;
-    return (
-      <div>
-        <tbody>
-          <tr key={movie._id}>
-            <td>{title}</td>
-            <td>{genre.name}</td>
-            <td>{numberInStock}</td>
-            <td>{dailyRentalRate}</td>
-          </tr>
-        </tbody>
-      </div>
-    );
-  }
 
   if (movie.length === 0) return <p>no movie in the database</p>;
   return (
     <>
-      <p>there are {movie.length} in the data base</p>
-      <Pagination
+      <div className="container ">
+        <div className="row ">
+          <p>there are {movie.length} in the data base</p>
+          <div className="col-3 ">
+            <Listinggroup item={genric} onItemSelect={handleGenric} />
+          </div>
+          <div className="col-8 ">
+            <Pagination
+              data={movie}
+              pageLimit={3}
+              dataLimit={4}
+              setMovie={setMovie}
+            />
+          </div>
+        </div>
+      </div>
+      {/* <Listinggroup /> */}
+      {/* <Pagination
         data={movie}
-        // RenderComponent={Post}
-        // handleClick={toggleLike}
         pageLimit={3}
-        dataLimit={3}
+        dataLimit={4}
         setMovie={setMovie}
-      />
+      /> */}
       {/* <p>there are {movie.length} in the data base</p>
-      <table className="table">
+      <table classNameName="table">
         <thead>
           <tr>
             <th scope="col">Title</th>

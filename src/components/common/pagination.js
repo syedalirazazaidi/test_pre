@@ -3,7 +3,6 @@ import Like from "./like";
 
 const Pagination = ({
   data,
-  RenderComponent,
 
   pageLimit,
   dataLimit,
@@ -11,12 +10,7 @@ const Pagination = ({
 }) => {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
-  //   function changePage(event) {
-  //     const pageNumber = Number(event.target.textContent);
-  //     setCurrentPage(pageNumber);
-  //   }
-  //   console.log(data, "o");
-  console.log(data, "LLLLLLOO");
+
   const toggleLike = (id) => {
     console.log(id);
     setMovie((pre) => {
@@ -140,28 +134,23 @@ const Pagination = ({
       </table>
       <nav aria-label="Page navigation example">
         <ul className="pagination">
-          {/* <li className="page-item">
-            <a className="page-link" href="#">
-              Previous
-            </a>
-          </li> */}
           {getPaginationGroup().map((item, index) => (
-            <button
+            <li
+              className={item === currentPage ? "page-item active" : ""}
               key={index}
-              onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? "active" : null
-              }`}
             >
-              <span>{item}</span>
-            </button>
+              <a
+                className="page-link"
+                href="#"
+                key={index}
+                onClick={changePage}
+              >
+                {item}
+              </a>
+            </li>
           ))}
-          {/* <li className="page-item">
-            <a className="page-link" href="#">
-              {currentPage}
-            </a>
-          </li>
-          <li className="page-item">
+
+          {/*<li className="page-item">
             <a className="page-link" href="#">
               2
             </a>
